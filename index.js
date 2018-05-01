@@ -14,7 +14,7 @@ const TILES = new Array(20).fill('');
 const styles = StyleSheet.create({
   box: {
     backgroundColor: '#ccc',
-    paddingVertical: 16,
+    paddingTop: 16,
   },
   scrollView: {
     flex: 1,
@@ -35,10 +35,22 @@ const styles = StyleSheet.create({
     marginLeft: 16,
   },
   pressed: {
-    backgroundColor: 'red',
+    backgroundColor: 'orange',
   },
   text: {
     fontWeight: 'bold',
+  },
+  counter: {
+    alignItems: 'center',
+    backgroundColor: 'yellow',
+    bottom: 0,
+    left: 0,
+    padding: 8,
+    position: 'sticky',
+    right: 0,
+  },
+  toggleCounter: {
+    backgroundColor: 'red',
   },
 });
 
@@ -53,8 +65,17 @@ class Tile extends React.Component {
     this._handlePress = this._handlePress.bind(this);
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    if (this.state.pressed !== nextState.pressed) {
+      console.log('> Tile.shouldComponentUpdate', nextProps, nextState);
+      return true;
+    }
+    return false;
+  }
+
   _handlePress() {
     this.setState({ pressed: true });
+    this.props.onPress();
   }
 
   render() {
@@ -74,6 +95,21 @@ class Tile extends React.Component {
 }
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      tilesPressed: 0,
+    };
+
+    this.handlePress = this.handlePress.bind(this);
+  }
+
+  handlePress() {
+    this.setState(prevState => ({ tilesPressed: prevState.tilesPressed + 1 }));
+    console.log('>>>> PRESS <<<<');
+  }
+
   render() {
     return (
       <View style={styles.box}>
@@ -81,11 +117,26 @@ class App extends React.Component {
           {ROWS.map((el, i) => (
             <ScrollView horizontal={true} key={i} style={styles.scrollView}>
               {TILES.map((el, i) => (
-                <Tile index={i} key={i} style={[i === 0 && styles.first]} />
+                <Tile
+                  index={i}
+                  key={i}
+                  onPress={this.handlePress}
+                  style={[i === 0 && styles.first]}
+                />
               ))}
             </ScrollView>
           ))}
         </ScrollView>
+        <View
+          style={[
+            styles.counter,
+            this.state.tilesPressed % 2 && styles.toggleCounter,
+          ]}
+        >
+          <Text style={styles.text}>
+            Tiles Pressed: {this.state.tilesPressed}
+          </Text>
+        </View>
       </View>
     );
   }
