@@ -2,8 +2,9 @@ const path = require('path');
 
 module.exports = {
   entry: {
-    app: './index.js',
+    index: './index.js',
     polyfill: './polyfill.js',
+    simple: './simple.js',
   },
   output: {
     filename: '[name].js',
