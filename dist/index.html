@@ -1,11 +1,19 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" class="u-fillWindow">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
     <title>RNW Test</title>
+    <style media="screen">
+      .u-fillWindow {
+        height: 100%;
+        width: 100%;
+      }
+    </style>
   </head>
-  <body>
-    <div id="react-root"></div>
-    <script src="bundle.js" charset="utf-8"></script>
+  <body class="u-fillWindow">
+    <div id="react-root" class="u-fillWindow"></div>
+    <script src="polyfill.js" charset="utf-8"></script>
+    <script src="app.js" charset="utf-8"></script>
   </body>
 </html>
