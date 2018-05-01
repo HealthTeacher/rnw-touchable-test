@@ -1,8 +1,8 @@
 {
-  "name": "rnw-test",
+  "name": "rnw-touchable-test",
   "version": "0.0.1",
   "description": "Test case for Touchable press handlers within ScrollView.",
-  "author": "David Calhoun <dpcalhoun@gmail.com>",
+  "author": "David Calhoun <david@gonoodle.com>",
   "license": "MIT",
   "private": true,
   "scripts": {
