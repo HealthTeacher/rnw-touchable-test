@@ -14,7 +14,7 @@ module.exports = {
     contentBase: './dist',
     host: '0.0.0.0',
   },
-  mode: 'development',
+  mode: process.env.NODE_ENV === 'development' ? 'development' : 'production',
   module: {
     rules: [
       {
