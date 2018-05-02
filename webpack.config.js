@@ -3,8 +3,8 @@ const path = require('path');
 module.exports = {
   entry: {
     index: './index.js',
+    nested: './nested.js',
     polyfill: './polyfill.js',
-    simple: './simple.js',
   },
   output: {
     filename: '[name].js',
@@ -13,7 +13,6 @@ module.exports = {
   devServer: {
     contentBase: './dist',
     host: '0.0.0.0',
-    public: 'app.gonoodle.localhost:8080',
   },
   mode: 'development',
   module: {

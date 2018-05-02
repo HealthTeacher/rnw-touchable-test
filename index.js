@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 
 const ROWS = new Array(40).fill('');
-const TILES = new Array(20).fill('');
 
 const styles = StyleSheet.create({
   box: {
@@ -115,16 +114,12 @@ class App extends React.Component {
       <View style={styles.box}>
         <ScrollView style={styles.scrollView}>
           {ROWS.map((el, i) => (
-            <ScrollView horizontal={true} key={i} style={styles.scrollView}>
-              {TILES.map((el, i) => (
-                <Tile
-                  index={i}
-                  key={i}
-                  onPress={this.handlePress}
-                  style={[i === 0 && styles.first]}
-                />
-              ))}
-            </ScrollView>
+            <Tile
+              index={i}
+              key={i}
+              onPress={this.handlePress}
+              style={styles.first}
+            />
           ))}
         </ScrollView>
         <View
